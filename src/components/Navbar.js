@@ -1,14 +1,17 @@
-import React from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import { NavLink } from 'react-router-dom'
-import { LOGIN_ROUTE } from '../utils/const'
+import { useContext } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import { NavLink } from 'react-router-dom';
+import { LOGIN_ROUTE } from '../utils/const';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Context } from '../index';
 
 export default function Navbar() {
-    const user = false
+    const { auth } = useContext(Context);
+    const [user] = useAuthState(auth);
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -23,14 +26,16 @@ export default function Navbar() {
 
                     {user ? (
                         <Button
+                            onClick={() => auth.signOut()}
                             style={{
-                                color: 'black',
+                                color: 'white',
                                 border: '1px solid #222',
                                 borderRadius: '5px',
                                 fontWeight: '700',
+                                textTransform: 'uppercase',
                             }}
                         >
-                            Quit
+                            exit
                         </Button>
                     ) : (
                         <div
@@ -42,12 +47,21 @@ export default function Navbar() {
                             }}
                         >
                             <NavLink to={LOGIN_ROUTE}>
-                                <Button style={{ color: '#222', fontWeight: '700' }}>Login</Button>
+                                <Button
+                                    style={{
+                                        border: '1px solid #222',
+                                        color: '#fff',
+                                        fontWeight: '700',
+                                        textTransform: 'uppercase',
+                                    }}
+                                >
+                                    Login
+                                </Button>
                             </NavLink>
                         </div>
                     )}
                 </Toolbar>
             </AppBar>
         </Box>
-    )
+    );
 }

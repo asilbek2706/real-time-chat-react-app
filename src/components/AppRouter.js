@@ -1,9 +1,13 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
-import { privateRoutes, publicRoutes } from '../routes'
-import { CHAT_ROUTE, LOGIN_ROUTE } from '../utils/const'
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { privateRoutes, publicRoutes } from '../routes';
+import { CHAT_ROUTE, LOGIN_ROUTE } from '../utils/const';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useContext } from 'react';
+import { Context } from '../index';
 
 function AppRouter() {
-    const user = false
+    const { auth } = useContext(Context);
+    const [user] = useAuthState(auth);
 
     return user ? (
         <Routes>
@@ -19,7 +23,7 @@ function AppRouter() {
             ))}
             <Route path='*' element={<Navigate to={LOGIN_ROUTE} replace />} />
         </Routes>
-    )
+    );
 }
 
-export default AppRouter
+export default AppRouter;
