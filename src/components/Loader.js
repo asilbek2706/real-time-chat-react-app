@@ -1,7 +1,5 @@
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 
 function Loader() {
     return (
