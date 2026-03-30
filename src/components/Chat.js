@@ -48,7 +48,8 @@ function Chat() {
                         overflowY: 'auto',
                         p: 2,
                         borderRadius: 2,
-                        bgcolor: '#f5f5f5',
+                        background: 'linear-gradient(45deg, #22030a, #e14c22)',
+                        overflowX: 'auto',
                     }}
                 >
                     {messages &&
@@ -59,14 +60,24 @@ function Chat() {
                                     margin: 1,
                                     border:
                                         user.uid === msg.uid ? '2px solid green' : '2px solid red',
+                                    backgroundColor:
+                                        user.uid === msg.uid
+                                            ? 'rgba(255, 255, 255, 0.7)'
+                                            : 'rgba(228, 83, 167, 0.549)',
                                     marginLeft: user.uid === msg.uid ? 'auto' : '10px',
                                     width: 'fit-content',
-                                    padding: 1,
-                                    borderRadius: 2,
-                                    background: '#ffffff',
+                                    padding: 5,
+                                    borderRadius: '10px',
                                 }}
                             >
-                                <Grid container alignItems='center'>
+                                <Grid
+                                    container
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                    }}
+                                >
                                     <Avatar
                                         src={msg.photoURL}
                                         sx={{ width: 24, height: 24, mr: 1 }}
@@ -75,7 +86,9 @@ function Chat() {
                                         {msg.displayName}
                                     </Typography>
                                 </Grid>
-                                <Typography variant='body1'>{msg.text}</Typography>
+                                <Typography variant='body1' style={{ marginTop: 2 }}>
+                                    {msg.text}
+                                </Typography>
                             </Box>
                         ))}
                 </Box>
@@ -94,6 +107,7 @@ function Chat() {
                         variant={'outlined'}
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
+                        style={{ background: 'lightgray', border: 'none' }}
                     />
                     <Button
                         variant={'contained'}

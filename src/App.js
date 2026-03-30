@@ -9,7 +9,7 @@ import Loader from './components/Loader';
 
 function App() {
     const { auth } = useContext(Context);
-    const [loading] = useAuthState(auth);
+    const [user, loading, error] = useAuthState(auth);
     if (loading) {
         return <Loader />;
     }
