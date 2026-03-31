@@ -8,13 +8,13 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const app = initializeApp({
-    apiKey: 'AIzaSyCtWMiKoauRgAZuN5Tgmoc9w2N0-8ebqn4',
-    authDomain: 'real-time-chat-4650b.firebaseapp.com',
-    projectId: 'real-time-chat-4650b',
-    storageBucket: 'real-time-chat-4650b.firebasestorage.app',
-    messagingSenderId: '550863214867',
-    appId: '1:550863214867:web:0a50b2cc2967432f7de2e6',
-    measurementId: 'G-89DPQC5YW7',
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 });
 
 const auth = getAuth(app);
